@@ -1,5 +1,5 @@
 # happyproj
-
+Project 1 for CSC330 Fall 2022
 
 
 ## Getting started
