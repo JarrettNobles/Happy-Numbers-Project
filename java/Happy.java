@@ -1,55 +1,71 @@
 import java.util.*;
 import java.util.Scanner;
-import java.util.HashSet;
-public class Happy
-{
-	
-	public static void main(String[] args)
-	{
-		System.out.println("Welcome to Happy Numbers");
-		//take user input for the first number
-		Scanner in = new Scanner(System.in);
-		System.out.println("Please enter the first number value");
-		long firstNum = in.nextLong();
-		//take user input for the 2nd number
-		System.out.println("Please enter the second number value");
-		//Scanner in2 = new Scanner(System.in);
-		int secondNum = in.nextInt();
-		System.out.println("First Argument: " + firstNum);
-		System.out.println("Second Argument:  " + secondNum);	
-		for(long firstNum = 1, secondNum = 0; seconNum <8; firstNum++)
+//begin class
+public class Happy{
+
+  //global variables
+  int firstNum,secondNum;
+  
+  //takes user input, it also prints the first and second argument the user enters and it will flip them if first is bigger than second
+  public void isHappy()
+  {
+  //first step is take user input
+    Scanner in = new Scanner(System.in);
+    System.out.println("Enter the first argument:");
+    firstNum = in.nextInt();
+    System.out.println("Enter the second argument");
+    secondNum = in.nextInt();
+    ///this is where it will flip the values if the first is bigger than the second
+    int temp;
+    if(secondNum < firstNum)
 		{
-			if(happy(firstNum))
-			{
-				System.out.println(firstNum);
-				count++;
-			}
-
+			temp = firstNum;
+			firstNum = secondNum;
+			secondNum = temp;
 		}
-	}
+   //print the arguments
+    System.out.println("First Argument:" + firstNum);
+    System.out.println("Second Argument:" + secondNum);
 
-	public static boolean happy(long number)
-	{
-		long firstNum = 0;
-		int secondNum = 0;
-		HashSet <Long> cycle = new HashSet<Long>();
-		while(number !=1 && cycle.add(number))
-		{
-			firstNum = 0;
-			while(number > 0)
-			{
-				secondNum = (int)(number % 10);
-				firstNum += secondNum * secondNum;
-				number /= 10;
+  }
+  
+  //happy number calculations
+  public void happyCheck()
+  {
+    int sum = 0, s, i, num;
+    System.out.println("The happy numbers are: ");
+    for(i = firstNum; i<= secondNum; i++)
+    {
+      num = i;
+      sum = 0;
+      
+      while (sum != 1 && sum != 4)
+      {
+        sum = 0;
+        while (num > 0 )
+        {
+          s = num % 10;
+          sum += (s * s);
+          num = num / 10;
+        }
+        num = sum;
+      }
+      
+      if(sum == 1)
+      {
+          System.out.println(i + " ");
+      }
 
-			}
-			
-			number = firstNum;
-		}
-		return number == 1;
-	}
-	
-
-
-
+         
+    }
+  }
+  
+  //main method
+  public static void main(String[] args)
+  {
+    Happy isHappy = new Happy();
+    isHappy.isHappy();
+    isHappy.happyCheck();
+  }
+  
 }
