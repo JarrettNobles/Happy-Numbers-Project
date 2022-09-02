@@ -34,8 +34,8 @@ public static  TreeMap <Double, Double> treeMap = new TreeMap<>();
   public void happyCheck(TreeMap<Double, Double> map)
   {
    // TreeMap <Double, Integer> treeMap = new TreeMap();
-    double sum = 0; 
-    double s, i, num;
+    int sum = 0; 
+    int s, i, num;
     System.out.println("The happy numbers are: ");
     for(i = firstNum; i<= secondNum; i++)
     {
@@ -59,9 +59,11 @@ public static  TreeMap <Double, Double> treeMap = new TreeMap<>();
       
       if(num == 1)
       {
-	  System.out.println(i);
-   	  map.put(sum, i);
+	  
+   	  map.put((double)sum,(double) i);
           System.out.println(treeMap);
+	  NavigableSet  newTree = treeMap.descendingKeySet();
+	  System.out.println(newTree);
       }
       
          
