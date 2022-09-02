@@ -1,13 +1,14 @@
 import java.util.*;
 import java.util.Scanner;
+import java.util.TreeMap;
 //begin class
 public class Happy{
 
   //global variables
   int firstNum,secondNum;
-  
+public static  TreeMap <Double, Double> treeMap = new TreeMap<>();
   //takes user input, it also prints the first and second argument the user enters and it will flip them if first is bigger than second
-  public void isHappy()
+  public  void isHappy()
   {
   //first step is take user input
     Scanner in = new Scanner(System.in);
@@ -30,34 +31,42 @@ public class Happy{
   }
   
   //happy number calculations
-  public void happyCheck()
+  public void happyCheck(TreeMap<Double, Double> map)
   {
-    int sum = 0, s, i, num;
+   // TreeMap <Double, Integer> treeMap = new TreeMap();
+    double sum = 0; 
+    double s, i, num;
     System.out.println("The happy numbers are: ");
     for(i = firstNum; i<= secondNum; i++)
     {
       num = i;
       sum = 0;
-      
+      //System.out.println("test1"); 
       while (sum != 1 && sum != 4)
       {
+	//System.out.println("test2");
         sum = 0;
         while (num > 0 )
         {
+	  //System.out.println("test3");
           s = num % 10;
           sum += (s * s);
           num = num / 10;
         }
         num = sum;
+	//System.out.println("test4");
       }
       
-      if(sum == 1)
+      if(num == 1)
       {
-          System.out.println(i + " ");
+	  System.out.println(i);
+   	  map.put(sum, i);
+          System.out.println(treeMap);
       }
-
+      
          
     }
+   
   }
   
   //main method
@@ -65,7 +74,9 @@ public class Happy{
   {
     Happy isHappy = new Happy();
     isHappy.isHappy();
-    isHappy.happyCheck();
+    isHappy.happyCheck(treeMap);
   }
+
+ 
   
 }
