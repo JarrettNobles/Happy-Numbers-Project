@@ -60,10 +60,12 @@ public static  TreeMap <Double, Double> treeMap = new TreeMap<>();
       if(num == 1)
       {
 	  
-   	  map.put((double)sum,(double) i);
-          System.out.println(treeMap);
-	  NavigableSet  newTree = treeMap.descendingKeySet();
-	  System.out.println(newTree);
+	  
+	  
+   	  map.put((double)i,(double) sum);
+	    NavigableSet  newTree = treeMap.descendingKeySet();
+      System.out.println(newTree);
+	  
       }
       
          
