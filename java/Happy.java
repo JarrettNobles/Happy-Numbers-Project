@@ -80,14 +80,14 @@ public class Happy{
           //square the numbers stored in oNum
           int square = (int) Math.pow(oNum,2);
           //take the sum
-          for(square = 1; square<= i; square++)
+           for(sum2 = 0; oNum < secondNum;sum2 ++)
           {
-              sum2 += (square * square);
+              sum2+=square;
+              norm = (int) Math.sqrt(sum2);
           }
           //System.out.println(sum2);
 
         //do square root functions
-         norm = (int) Math.sqrt(square);
          System.out.println(norm);
         treeMap.put((long) norm,oNum);
 
