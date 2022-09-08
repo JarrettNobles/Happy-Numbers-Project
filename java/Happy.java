@@ -51,14 +51,15 @@ public class Happy{
   public static void happyCheck(TreeMap<Long, Integer> treeMap)
   {
     int  oNum;
-    int sum = 0; 
+    int sum = 0;
+    int sum2 = 0; 
     int s, i, num;
     System.out.println("The happy numbers are: ");
     for(i = firstNum; i<= secondNum; i++)
     {
-        //sum2 is for the sum of i squared
-        int sum2[];
-        oNum=i;
+      //sum2 is for the sum of i squared
+
+      oNum=i;
       num = i;
       sum = 0;
       while (sum != 1 && sum != 4)
@@ -79,9 +80,15 @@ public class Happy{
           //square the numbers stored in oNum
           int square = (int) Math.pow(oNum,2);
           //take the sum
+          for(square = 1; square<= i; square++)
+          {
+              sum2 += (square * square);
+          }
+          //System.out.println(sum2);
 
         //do square root functions
-         norm = (int) Math.sqrt((double)oNum);
+         norm = (int) Math.sqrt(square);
+         System.out.println(norm);
         treeMap.put((long) norm,oNum);
 
       }
