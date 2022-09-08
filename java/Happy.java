@@ -77,17 +77,15 @@ public class Happy{
       //prints to the tree map
       if(sum == 1)
       {
-          //square the numbers stored in oNum
+         System.out.println(oNum);
           int square = (int) Math.pow(oNum,2);
+          System.out.println(square);
           //take the sum
-           for(sum2 = 0; oNum < secondNum;sum2 ++)
-          {
-              sum2+=square;
-              norm = (int) Math.sqrt(sum2);
-          }
-          //System.out.println(sum2);
+          
 
         //do square root functions
+        norm = (int) Math.sqrt(sum2);
+        System.out.println(norm);
          System.out.println(norm);
         treeMap.put((long) norm,oNum);
 
