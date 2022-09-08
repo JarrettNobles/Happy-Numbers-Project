@@ -1,17 +1,15 @@
 import java.util.*;
 import java.util.Scanner;
 import java.util.TreeMap;
+import java.lang.Math;
 
 //begin class
 public class Happy{
 
   //global variables
- public static  int firstNum,secondNum;
+ public static  int firstNum,secondNum, oNum ,norm;
 
-  //hash map originally
-  public  static HashMap<Long, Integer> cycle = new HashMap<>();
- //public  static HashSet<Long> cycle = new HashSet<>();
-  public  static TreeMap <Long, Integer> treeMap = new TreeMap<>(cycle);
+  public  static TreeMap <Long, Integer> treeMap = new TreeMap<>();
   //takes user input, it also prints the first and second argument the user enters and it will flip them if first is bigger than second
   public  static void isHappy()
   {
@@ -39,24 +37,28 @@ public class Happy{
     public static void printReverseTreeMap(TreeMap<Long,Integer> treeMap)
     {
         for(Long i : treeMap.descendingKeySet()){
-            //NavigableSet newTree = treeMap.descendingKeySet();
-            //Iterator itr1 = newTree.iterator();
-            //System.out.println(itr1.next());//prints 10 right now, either stores 1 from sum or num?
-            //System.out.println(itr1.next());
-            //Set <Long> i = treeMap.descendingKeySet();
-            System.out.println(i);
+            NavigableSet newTree = treeMap.descendingKeySet();
+            Iterator itr1 = newTree.iterator();
+            System.out.println(itr1.next());
+
+            //System.out.println(i);
 
 
         }
     }
   //happy number calculations
+    //TURN THIS METHOD INTO AN ARRAY
   public static void happyCheck(TreeMap<Long, Integer> treeMap)
   {
+    int  oNum;
     int sum = 0; 
     int s, i, num;
     System.out.println("The happy numbers are: ");
     for(i = firstNum; i<= secondNum; i++)
     {
+        //sum2 is for the sum of i squared
+        int sum2[];
+        oNum=i;
       num = i;
       sum = 0;
       while (sum != 1 && sum != 4)
@@ -74,11 +76,17 @@ public class Happy{
       //prints to the tree map
       if(sum == 1)
       {
-        cycle.put((long)i,sum);
-        //System.out.println(cycle);
+          //square the numbers stored in oNum
+          int square = (int) Math.pow(oNum,2);
+          //take the sum
+
+        //do square root functions
+         norm = (int) Math.sqrt((double)oNum);
+        treeMap.put((long) norm,oNum);
+
       }
     }
-    treeMap.putAll(cycle);
+    //treeMap.putAll(cycle);
     printReverseTreeMap(treeMap);
   }
 
@@ -87,6 +95,7 @@ public class Happy{
   {
     Happy isHappy = new Happy();
     isHappy.isHappy();
+    //isHappy.happyCheck(i);
     isHappy.happyCheck(treeMap);
   }
 }
