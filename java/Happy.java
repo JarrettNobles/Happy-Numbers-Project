@@ -7,7 +7,10 @@ import java.util.HashSet;
 //begin class
 public class Happy{
   //global variables
- public static  int firstNum,secondNum, oNum ,norm;
+ public static  int firstNum;
+    public static int secondNum;
+    public static int oNum;
+    public static double norm;
   public  static TreeMap <Long, Integer> treeMap = new TreeMap<>();
   //public static HashMap <Long, Integer> cycle = new HashMap<Long, Integer>();
   public static HashSet<Long> cycle = new HashSet<Long>();
@@ -40,7 +43,7 @@ public class Happy{
             Iterator itr1 = newTree.iterator();
             System.out.println(itr1.next());
 
-            //System.out.println(i);
+            System.out.println(i);
 
 
         }
@@ -48,12 +51,15 @@ public class Happy{
   //happy number calculations
     //TURN THIS METHOD INTO AN ARRAY
   public static void happyCheck(TreeMap<Long, Integer> treeMap) {
+
+      int finalAnswer;
       int sum = 0;
       int r, i, n;
       int oNum;
       System.out.println("The happy numbers are: ");
       int sum2 = 0;
       for (i = firstNum; i <= secondNum; i++) {
+         int  square = 0;
           sum2 = 0;
           oNum = i;
           n = i;
@@ -68,30 +74,35 @@ public class Happy{
               n = sum;
           }
           if (sum == 1) {
-              System.out.println(oNum); //prints original number
-              cycle.add((long) i); //adds o num to hash
-              //System.out.println(cycle); //prints the full hash
               cycle.toArray();
-              //for(Long norm: cycle){
-              //sum2 += Math.sqrt(Math.pow(norm,2));
-              //norm = Long.valueOf((int) Math.pow(norm,2));
-              //System.out.println(sum2);
-              //int norm = (int) Math.sqrt(sum2);
+              //System.out.println(oNum);//prints original number
+              //square i
+              square += i * i;
+              //adds squared values to hash
+              cycle.add((long) square);
+              //System.out.println(cycle);
+              //take the sum of cycle
+              norm+=square;
+                //take square root of the sum
+              finalAnswer = (int) Math.sqrt(norm);
+              //System.out.println(finalAnswer);
+              treeMap.put((long)oNum, square);
 
-              //}
-              //System.out.println(sum2);
           }
       }
 
+      //for loop to possibly use to take  the sum of the hash?
       for (Long value : cycle) {
-          sum2 += Math.sqrt(Math.pow(value, 2));
-          //norm = Long.valueOf((int) Math.pow(norm,2));
-          //System.out.println(sum2);
-          //int norm = (int) Math.sqrt(sum2);
+          //System.out.print(value);
+          //sum function
+          //norm += value;
+          //System.out.println(norm);
+          //finalAnswer = (int) Math.sqrt(norm);
+          //System.out.println(finalAnswer);
+
+
 
       }
-      System.out.println(sum2);
-
 
   }
 
