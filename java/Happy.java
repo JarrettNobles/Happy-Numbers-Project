@@ -38,12 +38,13 @@ public class Happy{
   //print the reverse tree order
     public static void printReverseTreeMap(TreeMap<Long,Integer> treeMap)
     {
-        for(Long i : treeMap.descendingKeySet()){
+        for(Long oNum : treeMap.descendingKeySet()){
             NavigableSet newTree = treeMap.descendingKeySet();
+            System.out.println("test");
             Iterator itr1 = newTree.iterator();
             System.out.println(itr1.next());
 
-            System.out.println(i);
+
 
 
         }
@@ -86,6 +87,8 @@ public class Happy{
                 //take square root of the sum
               finalAnswer = (int) Math.sqrt(norm);
               //System.out.println(finalAnswer);
+              System.out.print(norm + " ");
+              System.out.println(oNum);
               treeMap.put((long)oNum, square);
 
           }
