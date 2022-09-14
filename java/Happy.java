@@ -3,23 +3,36 @@ import java.math.*;
 
 
 
-public class HappyNums2 {
+public class Happy {
 
     public static void main (String[] args)
     {   ArrayList<Double> normedvalues = new ArrayList<Double>();
-        //vector<double> normedvalues;
-        //TreeMap<Integer, Double> treeMap = new TreeMap<>(Collections.reverseOrder());
         TreeMap<Double, Integer> treeMap = new TreeMap<>(Collections.reverseOrder());
-        //map<int, float> values;
-        //vector<pair<int, double>> valuesVec;
-        //ArrayList<TestPair> valuesVec = new ArrayList<>();
-        //int n = 19;
-        for(int i =50; i <= 200; i++) {
+        Scanner in = new Scanner(System.in);
+        int firstNum ,secondNum;
+        System.out.print("Enter the first number: ");
+        firstNum = in.nextInt();
+        System.out.print("Enter the second number: ");
+        secondNum = in.nextInt();
+        //check if second number is greater than the first and swap the values
+        int temp;
+        if(secondNum < firstNum)
+        {
+            temp = firstNum;
+            firstNum = secondNum;
+            secondNum = temp;
+
+        }
+        System.out.println("First Argument: " + firstNum);
+        System.out.println("Second Argument: " + secondNum);
+
+
+        for(int i = firstNum; i <= secondNum; i++) {
             if (isHappy(i)) {
                 normedvalues.add((double) i);
                 breakdown(i,normedvalues);
-                double sum =0;
-                for( int a =0; a <normedvalues.size(); a++)
+                double sum = 0;
+                for( int a = 0; a < normedvalues.size(); a++)
                 {
                     sum = sum + Math.pow(normedvalues.get(a),2);
                 }
@@ -28,31 +41,11 @@ public class HappyNums2 {
                 normedvalues.clear();
 
             }
-
         }
-
+        //call print reverse tree method to sort the tree values in descending
         printReverseTreeMap(treeMap);
-
-        //sort(valuesVec.begin(), valuesVec.end(), sortbysecdesc);
-
-
-        /*for (int i=0; i<treeMap.size() && i < 10; i++)
-        {
-            // "first" and "second" are used to access
-            // 1st and 2nd element of pair respectively
-            cout << valuesVec[i].first << " "
-                    << valuesVec[i].second << endl;
-        }
-
-         */
-        for(Map.Entry<Double, Integer> entry :treeMap.entrySet())
-        {
-            System.out.println("Key: " + entry.getKey() + "Value: " + entry.getValue());
-        }
-
-
     }
-     public static int sumDigitSquare(int n)
+    public static int sumDigitSquare(int n)
     {
         int sq = 0;
         while (n > 0) {
@@ -69,9 +62,7 @@ public class HappyNums2 {
         HashSet<Integer> s = new HashSet<Integer>();
         s.add(n);
 
-        // Keep replacing n with sum of
-        // squares of digits until we either
-        // reach 1 or we endup in a cycle
+        // Keep replacing n with sum of squares of digits until we either reach 1 or we end up in a cycle
         while (true)
         {
 
@@ -79,41 +70,18 @@ public class HappyNums2 {
             if (n == 1)
                 return true;
 
-            // Replace n with sum of squares
-            // of digits
+            // Replace n with sum of squares of digits
             n = sumDigitSquare(n);
 
-            // If n is already visited, a cycle
-            // is formed, means not Happy
-
+            // If n is already visited, a cycle is formed, means not Happy
             if ((s.contains(n) && n != (int)s.toArray()[ s.size()-1 ] ))
                 return false;
 
             // Mark n as visited
             s.add(n);
         }
-
+        
     }
-    public static double norm1(int n )
-    {
-        int r=0;
-        double total=0;
-        while(n!=0)
-        {
-            r=n%10;
-            n=n/10;
-
-            total = total+norm(r);
-        }
-
-        return total;
-    }
-    /*public boolean sortbysecdesc(const pair<int,double> &a,
-                   const pair<int,double> &b)
-    {
-        return a.second>b.second;
-    }
-    */
 
     static void breakdown(int n, ArrayList<Double> normedvalues )
     {
@@ -134,49 +102,19 @@ public class HappyNums2 {
         }
     }
 
-
-    public static double norm(int n)
-    {
-        int d =0;
-        int s =0;
-        while(n>0 )
-        {
-            d = n%10;
-            s = s+d*d;
-            n = n/10;
-        }
-        return Math.sqrt(s);
-    }
-
+    //this method does the sorting in descending order by using an iterator and a set
     public static void printReverseTreeMap(TreeMap<Double,Integer>treeMap)
     {
-            int i =0;
-            Set set = treeMap.entrySet();
-            Iterator it = set.iterator();
+        int i =0;
+        Set set = treeMap.entrySet();
+        Iterator it = set.iterator();
 
-            int a =0;
-            while(it.hasNext() && a < 10)
-            {
-                Map.Entry pair = (Map.Entry)it.next();
-                System.out.println(pair.getValue());
-                a++;
-            }
-
-
-            /*for(Double key : treeMap.keySet()) {
-                if(i > 10)
-                {
-                    break;
-                }
-                System.out.println(treeMap.get(key));
-                i++;
-            }
-
-             */
-
+        int a =0;
+        while(it.hasNext() && a < 10)
+        {
+            Map.Entry pair = (Map.Entry)it.next();
+            System.out.println(pair.getValue());
+            a++;
+        }
     }
-
-
-
-
 }
