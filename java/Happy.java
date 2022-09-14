@@ -1,120 +1,182 @@
 import java.util.*;
-import java.util.Scanner;
-import java.util.TreeMap;
-import java.lang.Math;
-import java.lang.*;
-import java.util.HashSet;
-//begin class
-public class Happy{
-  //global variables
- public static  int firstNum;
-    public static int secondNum;
-    public static int oNum;
-    public static double norm;
-  public  static TreeMap <Long, Integer> treeMap = new TreeMap<>();
-  //public static HashMap <Long, Integer> cycle = new HashMap<Long, Integer>();
-  public static HashSet<Long> cycle = new HashSet<Long>();
-  //takes user input, it also prints the first and second argument the user enters and it will flip them if first is bigger than second
-  public  static void isHappy()
-  {
-    Scanner in = new Scanner(System.in);
-   //System.out.println("Enter the first argument:");
-    //firstNum = in.nextInt();
-    firstNum = 10;
-    //System.out.println("Enter the second argument");
-    //secondNum = in.nextInt();
-    secondNum = 30;
-    int temp;
-    if(secondNum < firstNum)
-		{
-			temp = firstNum;
-			firstNum = secondNum;
-			secondNum = temp;
-		}
-   //print the arguments
-    System.out.println("First Argument:" + firstNum);
-    System.out.println("Second Argument:" + secondNum);
-  }
-  //print the reverse tree order
-    public static void printReverseTreeMap(TreeMap<Long,Integer> treeMap)
-    {
-        for(Long oNum : treeMap.descendingKeySet()){
-            NavigableSet newTree = treeMap.descendingKeySet();
-            System.out.println("test");
-            Iterator itr1 = newTree.iterator();
-            System.out.println(itr1.next());
+import java.math.*;
 
 
 
+public class HappyNums2 {
+
+    public static void main (String[] args)
+    {   ArrayList<Double> normedvalues = new ArrayList<Double>();
+        //vector<double> normedvalues;
+        //TreeMap<Integer, Double> treeMap = new TreeMap<>(Collections.reverseOrder());
+        TreeMap<Double, Integer> treeMap = new TreeMap<>(Collections.reverseOrder());
+        //map<int, float> values;
+        //vector<pair<int, double>> valuesVec;
+        //ArrayList<TestPair> valuesVec = new ArrayList<>();
+        //int n = 19;
+        for(int i =50; i <= 200; i++) {
+            if (isHappy(i)) {
+                normedvalues.add((double) i);
+                breakdown(i,normedvalues);
+                double sum =0;
+                for( int a =0; a <normedvalues.size(); a++)
+                {
+                    sum = sum + Math.pow(normedvalues.get(a),2);
+                }
+                sum = Math.sqrt(sum);
+                treeMap.put(sum, i);
+                normedvalues.clear();
+
+            }
 
         }
+
+        printReverseTreeMap(treeMap);
+
+        //sort(valuesVec.begin(), valuesVec.end(), sortbysecdesc);
+
+
+        /*for (int i=0; i<treeMap.size() && i < 10; i++)
+        {
+            // "first" and "second" are used to access
+            // 1st and 2nd element of pair respectively
+            cout << valuesVec[i].first << " "
+                    << valuesVec[i].second << endl;
+        }
+
+         */
+        for(Map.Entry<Double, Integer> entry :treeMap.entrySet())
+        {
+            System.out.println("Key: " + entry.getKey() + "Value: " + entry.getValue());
+        }
+
+
     }
-  //happy number calculations
-    //TURN THIS METHOD INTO AN ARRAY
-  public static void happyCheck(TreeMap<Long, Integer> treeMap) {
+     public static int sumDigitSquare(int n)
+    {
+        int sq = 0;
+        while (n > 0) {
+            int digit = n % 10;
+            sq += digit * digit;
+            n = n / 10;
+        }
+        return sq;
+    }
+    public static boolean isHappy(int n)
+    {
+        // A set to store numbers during
+        // repeated square sum process
+        HashSet<Integer> s = new HashSet<Integer>();
+        s.add(n);
 
-      int finalAnswer;
-      int sum = 0;
-      int r, i, n;
-      int oNum;
-      System.out.println("The happy numbers are: ");
-      int sum2 = 0;
-      for (i = firstNum; i <= secondNum; i++) {
-         int  square = 0;
-          sum2 = 0;
-          oNum = i;
-          n = i;
-          sum = 0;
-          while (sum != 1 && sum != 4) {
-              sum = 0;
-              while (n > 0) {
-                  r = n % 10;
-                  sum += (r * r);
-                  n = n / 10;
-              }
-              n = sum;
-          }
-          if (sum == 1) {
-              cycle.toArray();
-              //System.out.println(oNum);//prints original number
-              //square i
-              square += i * i;
-              //adds squared values to hash
-              cycle.add((long) square);
-              //System.out.println(cycle);
-              //take the sum of cycle
-              norm+=square;
-                //take square root of the sum
-              finalAnswer = (int) Math.sqrt(norm);
-              //System.out.println(finalAnswer);
-              System.out.print(norm + " ");
-              System.out.println(oNum);
-              treeMap.put((long)oNum, square);
+        // Keep replacing n with sum of
+        // squares of digits until we either
+        // reach 1 or we endup in a cycle
+        while (true)
+        {
 
-          }
-      }
+            // Number is Happy if we reach 1
+            if (n == 1)
+                return true;
 
-      //for loop to possibly use to take  the sum of the hash?
-      for (Long value : cycle) {
-          //System.out.print(value);
-          //sum function
-          //norm += value;
-          //System.out.println(norm);
-          //finalAnswer = (int) Math.sqrt(norm);
-          //System.out.println(finalAnswer);
+            // Replace n with sum of squares
+            // of digits
+            n = sumDigitSquare(n);
+
+            // If n is already visited, a cycle
+            // is formed, means not Happy
+
+            if ((s.contains(n) && n != (int)s.toArray()[ s.size()-1 ] ))
+                return false;
+
+            // Mark n as visited
+            s.add(n);
+        }
+
+    }
+    public static double norm1(int n )
+    {
+        int r=0;
+        double total=0;
+        while(n!=0)
+        {
+            r=n%10;
+            n=n/10;
+
+            total = total+norm(r);
+        }
+
+        return total;
+    }
+    /*public boolean sortbysecdesc(const pair<int,double> &a,
+                   const pair<int,double> &b)
+    {
+        return a.second>b.second;
+    }
+    */
+
+    static void breakdown(int n, ArrayList<Double> normedvalues )
+    {
+        int digit =0;
+        int number =0;
+        int a = 0;
+        while(n> 0)
+        {
+            digit = n%10;
+            n = n/10;
+
+            a =(int)(a + Math.pow(digit,2));
+
+        }
+        normedvalues.add((double)a);
+        if(a !=1) {
+            breakdown(a, normedvalues);
+        }
+    }
+
+
+    public static double norm(int n)
+    {
+        int d =0;
+        int s =0;
+        while(n>0 )
+        {
+            d = n%10;
+            s = s+d*d;
+            n = n/10;
+        }
+        return Math.sqrt(s);
+    }
+
+    public static void printReverseTreeMap(TreeMap<Double,Integer>treeMap)
+    {
+            int i =0;
+            Set set = treeMap.entrySet();
+            Iterator it = set.iterator();
+
+            int a =0;
+            while(it.hasNext() && a < 10)
+            {
+                Map.Entry pair = (Map.Entry)it.next();
+                System.out.println(pair.getValue());
+                a++;
+            }
+
+
+            /*for(Double key : treeMap.keySet()) {
+                if(i > 10)
+                {
+                    break;
+                }
+                System.out.println(treeMap.get(key));
+                i++;
+            }
+
+             */
+
+    }
 
 
 
-      }
 
-  }
-
-  //main method
-  public static void main(String[] args)
-  {
-    Happy isHappy = new Happy();
-    isHappy.isHappy();
-    //isHappy.happyCheck();
-    isHappy.happyCheck(treeMap);
-  }
 }
