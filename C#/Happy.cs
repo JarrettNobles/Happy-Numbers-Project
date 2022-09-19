@@ -8,8 +8,8 @@ public class Happy{
     int firstNum;
     int secondNum;
     double[] normedvalues = {};
-    //SortedList<double,int> treeMap = new SortedList<double,int>();
-    SortedList treeMap = new SortedList();
+   // SortedList treeMap = new SortedList();
+    Dictionary <double, int> treeMap = new Dictionary <double, int>();
     Console.WriteLine("Enter the first argument: ");
     String str1 = Console.ReadLine();
     firstNum = Convert.ToInt32(str1);
@@ -27,10 +27,24 @@ public class Happy{
     Console.WriteLine("First Argument: "+firstNum);
     Console.WriteLine("Second Argument: "+secondNum);
     
-    //for(int i = firstNum; i <= secondNum; i++)
-    //{
-      
-    //}
+    for(int i = firstNum; i <= secondNum; i++)
+    {
+     	if(isHappy(i))
+	{
+	  normedvalues.Add(double(i));
+	  breakdown(i,normedvalues);
+	  double sum = 0;
+	  for(int a = 0; a < normedvalues.size(); a++)
+	  {
+		sum = sum + Math.Pow(normedvalues.get(a),2));
+		
+
+	  }	
+	sum = Math.Sqrt(sum);
+ 	treeMap.Add(sum,i);
+	normedvalues.Clear();		
+	} 
+    }
     
   }
   
@@ -90,13 +104,16 @@ public class Happy{
     }
   }
   
-  static public void printReverseTreeMap(treeMap)
+  static public void printReverseTreeMap(Dictionary <double, int> treeMap)
   {
     int i = 0;
     //Set set = treeMap.
+    //HashSet <int> set = new HashSet <int> 
     int a = 0;
-    //foreach(var    
+    foreach(var x in treeMap.Reverse())
+    {
+	Console.WriteLine(x);	
+
+    }    
   }
-
-
 }
