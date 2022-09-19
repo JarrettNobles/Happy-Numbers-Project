@@ -7,7 +7,7 @@ public class Happy{
   {
     int firstNum;
     int secondNum;
-    ArrayList normedvalues = new ArrayList();
+    double[] normedvalues = {};
     //SortedList<double,int> treeMap = new SortedList<double,int>();
     SortedList treeMap = new SortedList();
     Console.WriteLine("Enter the first argument: ");
@@ -90,7 +90,13 @@ public class Happy{
     }
   }
   
-  static public void printReverseTreeMap(
+  static public void printReverseTreeMap(treeMap)
+  {
+    int i = 0;
+    //Set set = treeMap.
+    int a = 0;
+    //foreach(var    
+  }
 
 
 }
