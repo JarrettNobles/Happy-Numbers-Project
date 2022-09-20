@@ -7,7 +7,8 @@ public class Happy{
   {
     int firstNum;
     int secondNum;
-    SortedList<double, int>  normedvalues = new SortedList<double, int>();
+   // SortedList<double, int>  normedvalues = new SortedList<double, int>();
+    List <int> normedvalues = new List<int>();
     Dictionary <double, int> treeMap = new Dictionary <double, int>();
     Console.WriteLine("Enter the first argument: ");
     String str1 = Console.ReadLine();
@@ -33,9 +34,11 @@ public class Happy{
 	    normedvalues.Add(i);
 	    breakdown(i,normedvalues);
 	    double sum = 0;
-	    for(int a = 0; a < normedvalues.Count(); a++)
+	    for(int a = 0; a < normedvalues.Count; a++)
 	    {
-		    sum = sum + Math.Pow(normedvalues.Count(a),2);
+		    //normedvalues.Add(a,i);
+		    //sum = sum + Math.Pow(normedvalues.Count(a),2);
+		    sum = sum + Math.Pow(normedvalues.Count,2);
 	    }	
 	    sum = Math.Sqrt(sum);
  	    treeMap.Add(sum,i);
@@ -82,7 +85,7 @@ public class Happy{
   
   }
 
-  static void breakdown(int n, SortedList<double,int> normedvalues)
+  static void breakdown(int n, List<int> normedvalues)
   {
     int digit = 0;
     int number = 0;
@@ -94,7 +97,8 @@ public class Happy{
       a = (int)(a + Math.Pow(digit,2));
     }
     
-    normedvalues.Add((double)a);
+    //normedvalues.Add((double)a);
+    normedvalues.Add(a);
     if(a != 1)
     {
       breakdown(a, normedvalues);
