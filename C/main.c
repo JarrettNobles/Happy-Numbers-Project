@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #define CACHE 256
+//USE STATIC ARRAY SIZE 10,000 INSTEAD OF VECTOR
 double *normedvalues;
 size_t normedSize = 1;
 
@@ -13,7 +14,8 @@ struct pair
     int value;
 
 };
-struct pair *valuesVec;
+int valuesVec[10000];
+//struct pair *valuesVec;
 size_t valuesVecSize = 0;
 
 
@@ -83,7 +85,7 @@ int main()
     printf("1\n");
 
 
-    for(int i =19; i <=20; i++)
+    for(int i =10; i <=30; i++)
     {
         printf("2\n");
         if(isHappy(i)){
@@ -95,19 +97,23 @@ int main()
             double value = normedvalues[3];
             printf("%f\n", value);
 
-            for(int a =0; i < normedSize; a++)
+            for(int a =0; a < normedSize; a++)
             {   printf("3\n");
                 sum = sum + pow(normedvalues[a],2);
             }
+            //error here
             sum = sqrt(sum);
             printf("4\n");
-            struct pair pairval = {sum,i};
+            //struct pair pairval = {sum,i};
+            int pairval[100000];
+	    int 
             //int ValuesSize = sizeof(valuesVec)/sizeof(valuesVec[0]);
             valuesVec[valuesVecSize] =pairval;
             printf("5\n");
             memset(normedvalues,0, sizeof *normedvalues);
 
         }
+        
     }
     printf("6\n");
     double value = valuesVec[0].key;
@@ -139,11 +145,7 @@ int main()
      printf("\n");
      */
 
-
-    //for loop to do math for happy nums here to calculate norms
-
     free(normedvalues);
-
 
 }
 

@@ -1,13 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 import "math"
-import "sort"
 
+//import "sort"
+var normedValues [] float64
 func sumDigitSquare(n int) int {
 	var square int = 0
 	var digit int =0
-
 	for (n > 0){
 		digit = n % 10
 		square = square + (digit* digit)
@@ -17,73 +20,61 @@ func sumDigitSquare(n int) int {
 }
 //checks to see if the number is a happy number
 func isHappy(n int) bool {
-
+	//var a float64 = float64(math.Pow(float64(n),2))
+	//normedValues = append(normedValues, a)
 	s := map[int] struct{}{}
 	s[n] = struct{}{}
-
 	for(true){
 		if (n==1){
 			return true
 		}
 
 		n = sumDigitSquare(n)
-
-		
+		var q float64 = float64(n)
+		normedValues = append(normedValues,q)
 		if val, ok := s[n]; ok {
 			_ = val
 			return false
 		}
-
 		s[n] = struct{}{}
-
 	}
-
 	return false
 }
 
-func breakdown(n int , normedValues [] float64){
+func breakdown(n int , normedValues[] float64){
 	var a float64 = 0
 	var digit int =0
-	
 	for n >0{
 		digit = n%10
 		n = int(n/10)
-
 		var x float64 = float64(digit)
-
-
 		a = a+ math.Pow(x, 2)
-		
-		normedValues = append(normedValues,a )
-
 	}
+	normedValues = append(normedValues,a )
 	var b int = int(a)
-
-	if(b!=1){
+	if b!=1 {
 		breakdown(b,normedValues)
 	}
 
 }
 
 //print reverse map function
-func printReverseTreeMap(m map[float64]int)map[float64]int{
-	n := make(map[float64]int,len(m))
-	for v,k := range m{
-		n[v] = k
+func reverseMap(m map[float64]int) map[float64]int {
+	n := make(map[float64]int, len(m))
+	for v, k := range m {
+		n[(v)] = k
 	}
 	return n
 }
 
 func main(){
-
 	//data structures to store norm values go here (map, and a slice)
 	treeMap := make(map[float64]int)
-	var normedValues [] float64
 	fmt.Println("Enter the first argument: ")
 	var firstNum int
 	fmt.Scanln(&firstNum)
 	fmt.Println("Enter the second argument: ")
-	var secondNum int 
+	var secondNum int
 	fmt.Scanln(&secondNum)
 	//calls the swap if statement if second number (200) is greater than first number (50)
 	if firstNum > secondNum{
@@ -93,49 +84,37 @@ func main(){
 	}
 	fmt.Println("First Argument: ",firstNum)
 	fmt.Println("Second Argument: ",secondNum)
-
 	//for loop for norms
-	for i := firstNum; i < secondNum; i++{
+	for i := firstNum; i <=secondNum ; i++{
 		//cast i to a float
-		var y float64 = float64(i)
+		var y = float64(i)
+		normedValues = nil
 		if(isHappy(i)){
-			//need to cast i to a float
-			//var y float64 = float64(i)
-			//add y to normed values
-			normedValues = append(normedValues,y)
-			//need an int 
 			var z int = int(y)
-			//call breakdown function
+			normedValues = append(normedValues,float64(i))
 			breakdown(z,normedValues)
 			var sum float64 = 0
-			//declared this variable to access elements of the slice
-			var normedValuesLength = len(normedValues)
-			for a := 0; a < normedValuesLength; a++{
-				
+			for a := 0; a < (len(normedValues)); a++{
 				sum = sum + math.Pow(normedValues[a],2)
 			}
-			sum2 := math.Sqrt(sum)
-			//this line possibly bad?
-			//treeMap[sum] = treeMap[y]
-			treeMap[y] = treeMap[sum2]
-			//fmt.Println(sum2)
-			//sort.Float64s(normedValues)
-			//sort.Sort(sort.Reverse(sort.Float64s(normedValues)))
-			//sort.Float64s(normedValues)
-			//fmt.Println(normedValues)
-			
-			//clear the slice to re-allocate memory
-			normedValues=nil
-			
+			//possible errors here
+			sum2 := 0.000
+			sum2 = math.Sqrt(sum)
+			treeMap[sum2] = int(y)
 		}
-		//call print reverse treemap method here
-		sort.Sort(sort.Reverse(treeMap))
-		printReverseTreeMap := printReverseTreeMap(treeMap)
-		//printMap := treeMap[float64(i)]
-		//fmt.Println(printMap)
-		fmt.Println(printReverseTreeMap)
 	}
-	
+	 keys := make([]float64, 0)
+	for k, _ := range treeMap {
+		keys = append(keys, k)
+	}
+	sort.Sort(sort.Reverse(sort.Float64Slice(keys)))
+	if len(treeMap) == 0 {
+		fmt.Println("Nobody's Happy")
+	} else{
+		for _, k := range keys {
+			fmt.Println(treeMap[k])
+		}
+	}
 }
 
 
