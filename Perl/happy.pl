@@ -1,7 +1,17 @@
 #!/usr/bin/perl
 main();
+
+#build an array of hashes
+@AoH = ( 
+  {
+    data =>$normedvalues,
+    key =>$key,
+  },
+);
 sub main{
   
+ 
+
   #user input section
   print "Enter the first argument: \n";
     $firstNum = <>;
@@ -12,10 +22,12 @@ sub main{
   swap();
   print "First Argument: ",$firstNum,"\n";
   print "Second Argument: ",$secondNum,"\n";
-  
-  #for loop to calculate norms
-  #for($i = $firstNum; $i <= $secondNum; $i++){
-    
+
+  $i=$firstNum;
+
+  #calculate the norms
+  #while($i<$secondNum){
+
   #}
 
 }
@@ -26,7 +38,8 @@ sub swap{
   	($firstNum,$secondNum) = ($secondNum,$firstNum);
   }
 }
-#sub int sumDigitSquare($n){
+
+#sum digit square function
 sub sumDigitSquare($n){
   $sq=0;
   while($n>0){
@@ -35,6 +48,37 @@ sub sumDigitSquare($n){
     $n = $n/10;
   }
   return $sq;
+
+}
+#is happy function
+sub isHappy($n){
+  #data structure (array) to store the numbers during repeated square sum process
+  @normedvalues = ($n);
+
+  #keep replacing n with sum of squares of digits until we either reach 1 or we endup in a cycle
+  while(true)
+  {
+    #number is happy if we reach 1
+    if($n==1)
+    {
+      return true;
+    }
+    #replace n with sum of squares of digits
+    #error here "aborted due to compilation error, near $n, not enough arguements" when I call sumDigitSquare($n)
+    $n=&{sumDigitSquare}($n);
+
+    #if n is already visited, a cycle is formed, means not happy
+    if($n = $s){
+      return false;
+    }
+
+    #mark n as visited
+    @normedvalues=($n);
+    
+    
+  }
+  return false;
+
 
 }
 
