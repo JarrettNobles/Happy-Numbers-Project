@@ -6,8 +6,11 @@ import java.math.*;
 public class Happy {
 
     public static void main (String[] args)
-    {   ArrayList<Double> normedvalues = new ArrayList<Double>();
+    {   
+        //data structures to store the normed values (array list) and a treemap to sort them by the norms
+        ArrayList<Double> normedvalues = new ArrayList<Double>();
         TreeMap<Double, Integer> treeMap = new TreeMap<>(Collections.reverseOrder());
+        //user input section
         Scanner in = new Scanner(System.in);
         int firstNum ,secondNum;
         System.out.print("Enter the first number: ");
@@ -26,7 +29,7 @@ public class Happy {
         System.out.println("First Argument: " + firstNum);
         System.out.println("Second Argument: " + secondNum);
 
-
+        //add normed values to treemap
         for(int i = firstNum; i <= secondNum; i++) {
             if (isHappy(i)) {
                 normedvalues.add((double) i);
@@ -41,6 +44,7 @@ public class Happy {
                 normedvalues.clear();
 
             }
+            
         }
         //call print reverse tree method to sort the tree values in descending
         printReverseTreeMap(treeMap);
@@ -83,6 +87,7 @@ public class Happy {
         
     }
 
+    //this method solves for the normed values
     static void breakdown(int n, ArrayList<Double> normedvalues )
     {
         int digit =0;
@@ -116,5 +121,10 @@ public class Happy {
             System.out.println(pair.getValue());
             a++;
         }
+        if(treeMap.isEmpty())
+        {
+            System.out.println("NOBODIES HAPPY!");
+        }
+        
     }
 }
