@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,10 @@ public class HappyNums{
   {
     int firstNum;
     int secondNum;
-   // SortedList<double, int>  normedvalues = new SortedList<double, int>();
+    //List and sorted dictionary to store the happy numbers and sort by normed values (dictionary treeMap)
     List <int> normedvalues = new List<int>();
     SortedDictionary<double, int> treeMap = new SortedDictionary<double, int>();
+    //obtain user input
     Console.WriteLine("Enter the first argument: ");
     String str1 = Console.ReadLine();
     firstNum = Convert.ToInt32(str1);
@@ -27,6 +28,7 @@ public class HappyNums{
     Console.WriteLine("First Argument: "+firstNum);
     Console.WriteLine("Second Argument: "+secondNum);
     
+    //calculate norms for happy numbers
     for(int i = firstNum; i <= secondNum; i++)
     {
    	  if(isHappy(i))
@@ -34,10 +36,9 @@ public class HappyNums{
 	      normedvalues.Add(i);
 	      breakdown(i,normedvalues);
 	      double sum = 0; 
-        for(int a = 0; a < normedvalues.Count; a++) {
-		    //normedvalues.Add(a,i);
-		    //sum = sum + Math.Pow(normedvalues.Count(a),2);
-		    sum = sum + Math.Pow(normedvalues.ElementAt(a),2);
+        for(int a = 0; a < normedvalues.Count; a++) 
+        {
+		      sum = sum + Math.Pow(normedvalues.ElementAt(a),2);
 	      }	
 	      sum = Math.Sqrt(sum);
 
@@ -48,12 +49,13 @@ public class HappyNums{
         normedvalues.Clear();		
 	    } 
     }
-    
+    //print the dictionary
     printReverseTreeMap(treeMap);
-    //Console.WriteLine("WE ARE DONE!!!");
+    
     
   }
   
+  //method does the calculations for happy numbers
   static public int sumDigitSquare(int n)
   {
     int sq = 0;
@@ -67,6 +69,7 @@ public class HappyNums{
   
   }
   
+  //checks if a number is a happy number based on values from sumDigitSquare
   static public bool isHappy(int n)
   {
     HashSet<int> s = new HashSet<int>();
@@ -91,6 +94,7 @@ public class HappyNums{
   
   }
 
+  //this method breaksdown the happy numbers and calculates the normed values
   static void breakdown(int n, List<int> normedvalues)
   {
     int digit = 0;
@@ -102,8 +106,6 @@ public class HappyNums{
       n = n/10;
       a = (int)(a + Math.Pow(digit,2));
     }
-    
-    //normedvalues.Add((double)a);
     normedvalues.Add(a);
     if(a != 1)
     {
@@ -111,28 +113,20 @@ public class HappyNums{
     }
   }
   
+  //this function prints the dictionary in descending order, also it will print NOBODIES HAPPY if dictionary size is 0
   static public void printReverseTreeMap(SortedDictionary <double, int> treeMap)
   {
-    
-    //Set set = treeMap.
-    //HashSet <int> set = new HashSet <int> 
     int a = 0;
-
-
-    /*foreach (var x in treeMap.Reverse())
-    {
-      Console.WriteLine(x.Value);
-      a++;
-
-    }
-    */
     for (int z = treeMap.Count-1; z >= 0 && a < 10; z--)
     {
       var item = treeMap.ElementAt(z);
-      //var itemKey = item.Key;
       var itemValue = item.Value;
       Console.WriteLine(itemValue);
       a++;
+    }
+    if(treeMap.Count==0)
+    {
+      Console.WriteLine("NOBODIES HAPPY!");
     }
   }
   }
