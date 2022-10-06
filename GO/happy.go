@@ -101,6 +101,7 @@ func main(){
 			treeMap[sum2] = int(y)
 		}
 	}
+	count:=0
 	//sorting and printing happen here 
 	 keys := make([]float64, 0)
 	for k, _ := range treeMap {
@@ -111,7 +112,10 @@ func main(){
 		fmt.Println("NOBODIES HAPPY!")
 	} else{
 		for _, k := range keys {
-			fmt.Println(treeMap[k])
+			if count !=10{
+				fmt.Println(treeMap[k])
+				count++
+			}
 		}
 	}
 }
