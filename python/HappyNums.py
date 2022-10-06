@@ -4,14 +4,15 @@ from collections import OrderedDict
 # main function
 def HappyNums():  
 
-
+    #declare data structures to store the normed values	and a dictionary named treemap to sort and store 
     normedValues = list()
     treeMap = dict()
+    #take user input
     print("Enter the first argument: ")
     firstNum = int(input())
     print("Enter the second argument: ")
     secondNum = int(input())
-
+    #swap statement
     if secondNum < firstNum:
         temp = firstNum
         firstNum = secondNum
@@ -21,7 +22,7 @@ def HappyNums():
     print("Second Argument: " + str(secondNum))
 
     i = firstNum
-
+    #add happy numbers to dictionary and sort them
     while i <= secondNum:
         if isHappy(i):
             normedValues.append(i)
@@ -47,7 +48,7 @@ def HappyNums():
 
 
 
-
+#does calculations for happy numbers
 def sumDigitSquare(n):
     sq = 0
     n = int(n)
@@ -58,7 +59,7 @@ def sumDigitSquare(n):
 
     return sq
 
-
+#figures out if a number is a happy number based off of sumDigitSquare
 def isHappy(n):
     # A set to store numbers during repeated square sum process
     
@@ -87,7 +88,7 @@ def isHappy(n):
 
 
 
-
+#breaks down the normed values 
 def breakdown(n, normedValues):
     a = 0
     n = int(n)
