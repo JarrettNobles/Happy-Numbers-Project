@@ -20,8 +20,6 @@ func sumDigitSquare(n int) int {
 }
 //checks to see if the number is a happy number
 func isHappy(n int) bool {
-	//var a float64 = float64(math.Pow(float64(n),2))
-	//normedValues = append(normedValues, a)
 	s := map[int] struct{}{}
 	s[n] = struct{}{}
 	for(true){
@@ -41,6 +39,7 @@ func isHappy(n int) bool {
 	return false
 }
 
+//breaks down the happy numbers and solve for the norms 
 func breakdown(n int , normedValues[] float64){
 	var a float64 = 0
 	var digit int =0
@@ -97,19 +96,19 @@ func main(){
 			for a := 0; a < (len(normedValues)); a++{
 				sum = sum + math.Pow(normedValues[a],2)
 			}
-			//possible errors here
 			sum2 := 0.000
 			sum2 = math.Sqrt(sum)
 			treeMap[sum2] = int(y)
 		}
 	}
+	//sorting and printing happen here 
 	 keys := make([]float64, 0)
 	for k, _ := range treeMap {
 		keys = append(keys, k)
 	}
 	sort.Sort(sort.Reverse(sort.Float64Slice(keys)))
 	if len(treeMap) == 0 {
-		fmt.Println("Nobody's Happy")
+		fmt.Println("NOBODIES HAPPY!")
 	} else{
 		for _, k := range keys {
 			fmt.Println(treeMap[k])
