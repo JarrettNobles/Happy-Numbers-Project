@@ -1,4 +1,5 @@
-use List::Util qw (sum);
+#use List::Util qw(sum);
+#!/usr/bin/perl
 my $values;
 
 sub is_happy {
