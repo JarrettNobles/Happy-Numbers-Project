@@ -6,23 +6,13 @@ program happy
       integer :: number
       real :: normed_value
   end type data_point
-  integer :: number,number2
-  
-        
-  !print *,'Enter First Arguement: '
-  !Read *, number  
-  !print *, 'Enter Second Arguement: '
-  !Read *, number2 
-  !integer :: NumsTotal
-  !NumsTotal = number2 - number
 
-  type(data_point):: d(10),temp
-  !allocate(d(10))
+
+  type(data_point) :: d(10),temp
   integer, parameter :: find = 30
   integer :: found,i,j
-  !integer :: number,number2
+  integer :: number,number2
   integer :: count
-  integer :: number3 
   real :: normedValue
   integer :: lsup,bubble
   lsup=10
@@ -33,15 +23,6 @@ program happy
   found = 0
   number = 10
   count=1
-  print*, 'Enter first arguement: '
-  read*, number
-
-  print*, 'Enter second arguement: '
-  read*, number2
-  number3 = number2 - number
-    
-  !type(data_point) dimension(number3):: d
-
 
   do while( number <=number2)
     !if (found == number2) then
@@ -82,9 +63,7 @@ end do
 
 
   do i = 1,10
-    if(d(i)%number/=0) then 
      print *, d(i)%number, d(i)%normed_value
-    end if 
   end do
 
 
@@ -163,7 +142,5 @@ contains
         !sum1 = sum1
       end if
   end function breakdown
-
-  
 
 end program happy
