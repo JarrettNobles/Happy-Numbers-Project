@@ -31,7 +31,7 @@
 
 
 
-
+; used from https://rosettacode.org/wiki/Happy_numbers#Common_Lisp
 (defun sqr (n)
   (* n n))
 
