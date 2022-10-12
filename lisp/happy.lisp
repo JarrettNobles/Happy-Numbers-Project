@@ -2,6 +2,7 @@
 
 
  (defun main()
+   ; obtain user input
   (princ "Enter the First Argument: ")
   (setq firstNum(read))
   (terpri)
