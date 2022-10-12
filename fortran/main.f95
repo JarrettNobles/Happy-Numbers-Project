@@ -2,31 +2,24 @@ program happy
 
 
   implicit none
+  !declare variables and data types
   type data_point
       integer :: number
       real :: normed_value
   end type data_point
   integer :: number,number2
   
-        
-  !print *,'Enter First Arguement: '
-  !Read *, number  
-  !print *, 'Enter Second Arguement: '
-  !Read *, number2 
-  !integer :: NumsTotal
-  !NumsTotal = number2 - number
-
+  !allocate memory
   type(data_point):: d(10000),temp
-  !allocate(d(10))
   integer, parameter :: find = 30
   integer :: found,i,j
-  !integer :: number,number2
   integer :: count
   integer :: number3 
   real :: normedValue
   integer :: lsup,bubble
   lsup=10
-
+  
+  !get user input
   d%number = 0
   d%normed_value = 0.
   number2 = 30
@@ -39,29 +32,19 @@ program happy
   print*, 'Enter second arguement: '
   read*, number2
   number3 = number2 - number
-    
-  !type(data_point) dimension(number3):: d
-
-
+  !calculating the norms   
   do while( number <=number2)
-    !if (found == number2) then
-     ! exit
-    !end if
+ 
     if (is_happy (number)) then
-
-      !found = found + 1
-      !number2 = number2 +1
       normedValue = sqrt(real((number**2+breakdown(number) + 1)))
       d(count)%normed_value=normedValue
-      
-
-      write (*, '(i0)') number
       d(count)%number = number
       count = count + 1
     end if
     number = number + 1
   end do
 
+  !this is where it is sorted via bubble sort
   do i=1,10
   lsup=10
   do while (lsup > 1)
@@ -80,16 +63,15 @@ program happy
 
 end do
 
-
+  !print the sorted values 
   do i = 1,10
     if(d(i)%number/=0) then 
-     print *, d(i)%number, d(i)%normed_value
+     print *, d(i)%number
     end if 
   end do
 
-
 contains
-
+  !calculates happy number math 
   function sum_digits_squared (number) result (result)
 
     implicit none
@@ -112,7 +94,8 @@ contains
     end do
 
   end function sum_digits_squared
-
+  
+  !figures out if a number is a happy number
   function is_happy (number_s) result (result)
 
     implicit none
@@ -134,6 +117,7 @@ contains
 
   end function is_happy
 
+  !breakdown the happy numbers and solve for the normed values
   recursive function breakdown(number_r) result (sum1)
       implicit none
       integer :: a
@@ -143,27 +127,17 @@ contains
       integer :: n
       sum1 = 0
       n = number_r
-
       a = 0
       do while(n> 0)
         digit = MOD(n, 10)
         n = n/10
         a = a + digit**2
-
-
-
       end do
-
 
       if(a /=1 ) then
           sum1 = + a**2 + breakdown(a)
-          !print sum1
-
-      !else
-        !sum1 = sum1
       end if
-  end function breakdown
 
-  
+  end function breakdown
 
 end program happy
