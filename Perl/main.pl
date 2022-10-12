@@ -1,6 +1,7 @@
-#use List::Util qw(sum);
 #!/usr/bin/perl
-my $values;
+use List::Util qw(sum);
+
+%values = ();
 
 sub is_happy {
     my ($n) = @_;
@@ -31,6 +32,7 @@ sub breakdown {
     }
     
   }
+
 my $input;
 my $input2;
 
@@ -58,7 +60,7 @@ while($input <= $input2)
   {
     my $var5;
     $var5 = sqrt($input**2+breakdown($input, 0)+1);
-    $values->{$input} = $var5;
+    $values{$input} = $var5;
     
   }
   ++$input;
@@ -69,9 +71,9 @@ if($size == 0){
 print "NOBODYS HAPPY!\n";
 }
 my $count = 0;
-foreach my $name ( reverse sort { %$values{$a} <=> %$values{$b} } keys %$values) {
+foreach my $name ( reverse sort { $values{$a} <=> $values{$b} } keys %values) {
     if($count < 10){
-      print $name, "\n"; #%$values{$name};
+      print $name . "\n"; #%$values{$name};
       $count = $count +1;
     }
     }

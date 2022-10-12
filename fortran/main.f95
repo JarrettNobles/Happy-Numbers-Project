@@ -7,6 +7,7 @@ program happy
       real :: normed_value
   end type data_point
   integer :: number,number2
+  
         
   !print *,'Enter First Arguement: '
   !Read *, number  
@@ -39,7 +40,7 @@ program happy
   read*, number2
   number3 = number2 - number
     
-  type(data_point) dimension(number3):: d
+  !type(data_point) dimension(number3):: d
 
 
   do while( number <=number2)
@@ -81,7 +82,9 @@ end do
 
 
   do i = 1,10
+    if(d(i)%number/=0) then 
      print *, d(i)%number, d(i)%normed_value
+    end if 
   end do
 
 

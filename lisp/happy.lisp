@@ -1,5 +1,37 @@
 #!/usr/bin/sbcl --script
 
+
+ (defun main()
+  (princ "Enter the First Argument: ")
+  (setq firstNum(read))
+  (terpri)
+  
+  (princ "Enter the Second Argument: ")
+  (setq secondNum(read))
+  (terpri)
+  
+  (princ "First Argument: ")
+  (write firstNum)
+  (terpri)
+  (princ "Second Argument: ")
+  (write secondNum)
+  (terpri)
+  
+  
+  ; (main)
+ )
+  
+  
+
+
+
+
+
+
+
+
+
+
 (defun sqr (n)
   (* n n))
 
@@ -22,3 +54,4 @@
         ; test commit comment
  
 (print (happys))
+(terpri)

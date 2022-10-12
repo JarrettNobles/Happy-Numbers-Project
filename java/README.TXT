@@ -34,10 +34,10 @@ OUTPUT EXAMPLES:
     
 METHODS
   MAIN:
-  1.declare data structures to store normed values (ArrayList of type Double), and a treemap for storing and sorting the map (treeMap of types Double (key) and Integer (value)
-  2. obtain user input (firstNum and secondNum).
-  3. swap the values if firstNum is greater than the secondNum.
-  4. adding normedvalues to treemap and it does the math for them (forloop), starts by checking if a number isHappy then do the math for it. It adds it to the treeMap then clears normedValues. After that call the print reverse treemap method.
+    1.declare data structures to store normed values (ArrayList of type Double), and a treemap for storing and sorting the map (treeMap of types Double (key) and Integer (value)
+    2. obtain user input (firstNum and secondNum).
+    3. swap the values if firstNum is greater than the secondNum.
+    4. adding normedvalues to treemap and it does the math for them (forloop), starts by checking if a number isHappy then do the math for it. It adds it to the treeMap then clears normedValues. After that call the print reverse treemap method.
   
   sumDigitSquare:
     1. sumDigitSquare does math to calculate if a number is a happy number.
