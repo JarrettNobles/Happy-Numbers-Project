@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 use List::Util qw(sum);
-
+#JARRETT NOBLES
+#CSC330
 #data structure to store the happy numbers and normed values
 %values = ();
 
