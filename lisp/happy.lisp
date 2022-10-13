@@ -22,15 +22,8 @@
   ; (main)
  )
   
-  
-
-
-
-
-
-
-
-
+  ;Jarrett Nobles
+  ;CSC330
 
 ; used from https://rosettacode.org/wiki/Happy_numbers#Common_Lisp
 (defun sqr (n)
