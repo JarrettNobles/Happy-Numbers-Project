@@ -1,5 +1,6 @@
 package main
-
+//JARRETT NOBLES
+//CSC330
 import (
 	"fmt"
 	"sort"
