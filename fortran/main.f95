@@ -1,6 +1,7 @@
 program happy
 
-
+!JARRETT NOBLES
+!CSC330
   implicit none
   !declare variables and data types
   type data_point
