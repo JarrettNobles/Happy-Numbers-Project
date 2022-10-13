@@ -1,6 +1,7 @@
 import math
 from collections import OrderedDict
-
+#JARRETT NOBLES
+#CSC330
 # main function
 def HappyNums():  
 
